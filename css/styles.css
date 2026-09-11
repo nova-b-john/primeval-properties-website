@@ -1183,23 +1183,17 @@ body.is-nav-open .site-header {
   .who-we-help__grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
     gap: clamp(2.75rem, 5vw, 4.75rem);
-    align-items: stretch;
+    align-items: start;
   }
 
   .who-we-help h2 {
     margin-bottom: 2.75rem;
   }
 
-  .who-we-help__media {
-    position: relative;
-    min-height: 100%;
-  }
-
   .who-we-help__media img {
-    position: absolute;
-    inset: 0;
-    aspect-ratio: auto;
-    min-height: 36rem;
+    aspect-ratio: 4 / 5;
+    height: auto;
+    max-height: 38rem;
   }
 }
 
