@@ -1449,6 +1449,11 @@ body.is-nav-open .site-header {
   background-size: 1.85rem 1.85rem;
 }
 
+.hero--page.hero--arcs {
+  background-image: url("../assets/hero-arcs.svg");
+  background-size: 7.4rem 7.4rem;
+}
+
 .hero--page .hero__media,
 .hero--page::after {
   display: none;
