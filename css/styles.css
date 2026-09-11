@@ -243,6 +243,45 @@ address {
   margin-bottom: var(--space-7);
 }
 
+.section-head--row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+  max-width: none;
+}
+
+.section-head--row h2 {
+  flex: 1;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.section-head--row .button {
+  flex-shrink: 0;
+}
+
+.section-head--single {
+  max-width: none;
+}
+
+.section-head--single h2 {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .section-head--single h2 {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 899px) {
+  .section-head--row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .section-head.section--center {
   margin-inline: auto;
 }
