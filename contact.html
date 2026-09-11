@@ -100,181 +100,187 @@
 
 
 
-    <section class="section section--raised" aria-labelledby="enquiry-heading">
+    <section class="section enquiry" aria-labelledby="enquiry-heading">
 
       <div class="container">
 
-        <h2 id="enquiry-heading">Property Enquiry</h2>
+        <div class="enquiry-card">
 
+          <p class="form__status" id="form-status" tabindex="-1">
 
+            Thank you. Your property details have been received. Our team will review your enquiry and be in touch.
 
-        <p class="form__status" id="form-status" tabindex="-1">
+          </p>
 
-          Thank you. Your property details have been received. Our team will review your enquiry and be in touch.
+          <form class="form" id="property-enquiry" action="#" method="post" novalidate>
 
-        </p>
+            <div class="form__intro">
 
+              <h2 id="enquiry-heading">Property Enquiry</h2>
 
+              <p>Tell us about your property and what you need. We'll review your details and get in touch.</p>
 
-        <form class="form" id="property-enquiry" action="#" method="post" novalidate>
+            </div>
 
-          <fieldset class="form__fieldset">
+            <fieldset class="form__fieldset">
 
-            <legend class="form__legend">About You</legend>
+              <legend class="sr-only">About You</legend>
 
-            <div class="form__row form__row--2">
+              <div class="form__row form__row--2">
 
-              <div class="field">
+                <div class="field">
 
-                <label for="full-name">Full Name</label>
+                  <label for="first-name">First name</label>
 
-                <input id="full-name" name="fullName" type="text" autocomplete="name" required>
+                  <input id="first-name" name="firstName" type="text" autocomplete="given-name" placeholder="Layla" required>
 
-                <p class="field__error">Please enter your full name.</p>
+                  <p class="field__error">Please enter your first name.</p>
+
+                </div>
+
+                <div class="field">
+
+                  <label for="last-name">Last name</label>
+
+                  <input id="last-name" name="lastName" type="text" autocomplete="family-name" placeholder="Hassan" required>
+
+                  <p class="field__error">Please enter your last name.</p>
+
+                </div>
 
               </div>
 
               <div class="field">
 
-                <label for="email">Email</label>
+                <label for="email">Email Address</label>
 
-                <input id="email" name="email" type="email" autocomplete="email" required>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required>
 
                 <p class="field__error">Please enter a valid email address.</p>
 
               </div>
 
-            </div>
-
-            <div class="field">
-
-              <label for="phone">Phone / WhatsApp</label>
-
-              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
-
-              <p class="field__error">Please enter a phone or WhatsApp number.</p>
-
-            </div>
-
-          </fieldset>
-
-
-
-          <fieldset class="form__fieldset">
-
-            <legend class="form__legend">About Your Property</legend>
-
-            <div class="form__row form__row--2">
-
               <div class="field">
 
-                <label for="property-type">Property Type</label>
+                <label for="phone">Phone / WhatsApp</label>
 
-                <select id="property-type" name="propertyType" required>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+971 50 000 0000" required>
 
-                  <option value="">Select property type</option>
-
-                  <option value="apartment">Apartment</option>
-
-                  <option value="villa">Villa</option>
-
-                  <option value="commercial">Commercial</option>
-
-                  <option value="multiple">Multiple Properties</option>
-
-                </select>
-
-                <p class="field__error">Please select a property type.</p>
+                <p class="field__error">Please enter a phone or WhatsApp number.</p>
 
               </div>
 
-              <div class="field">
+            </fieldset>
 
-                <label for="property-location">Property Location</label>
+            <fieldset class="form__fieldset">
 
-                <input id="property-location" name="propertyLocation" type="text" placeholder="e.g. Al Reem Island" required>
+              <legend class="sr-only">About Your Property</legend>
 
-                <p class="field__error">Please enter the property location.</p>
+              <div class="form__row form__row--2">
 
-              </div>
+                <div class="field">
 
-            </div>
+                  <label for="property-type">Property Type</label>
 
-            <div class="form__row form__row--2">
+                  <select id="property-type" name="propertyType" required>
 
-              <div class="field">
+                    <option value="">Select property type</option>
 
-                <label for="occupancy">Occupancy Status</label>
+                    <option value="apartment">Apartment</option>
 
-                <select id="occupancy" name="occupancy" required>
+                    <option value="villa">Villa</option>
 
-                  <option value="">Select occupancy status</option>
+                    <option value="commercial">Commercial</option>
 
-                  <option value="vacant">Vacant</option>
+                    <option value="multiple">Multiple Properties</option>
 
-                  <option value="tenanted">Currently Tenanted</option>
+                  </select>
 
-                  <option value="upcoming">Upcoming Vacancy</option>
+                  <p class="field__error">Please select a property type.</p>
 
-                </select>
+                </div>
 
-                <p class="field__error">Please select occupancy status.</p>
+                <div class="field">
 
-              </div>
+                  <label for="property-location">Property Location</label>
 
-              <div class="field">
+                  <input id="property-location" name="propertyLocation" type="text" placeholder="Al Reem Island" required>
 
-                <label for="need">What Do You Need?</label>
+                  <p class="field__error">Please enter the property location.</p>
 
-                <select id="need" name="need" required>
-
-                  <option value="">Select what you need</option>
-
-                  <option value="property-leasing">Property Leasing</option>
-
-                  <option value="property-management">Property Management</option>
-
-                  <option value="leasing-management">Leasing + Management</option>
-
-                  <option value="portfolio-management">Portfolio Management</option>
-
-                  <option value="commercial-property-management">Commercial Property Management</option>
-
-                </select>
-
-                <p class="field__error">Please tell us what you need.</p>
+                </div>
 
               </div>
 
-            </div>
+              <div class="form__row form__row--2">
 
-          </fieldset>
+                <div class="field">
 
+                  <label for="occupancy">Occupancy Status</label>
 
+                  <select id="occupancy" name="occupancy" required>
 
-          <fieldset class="form__fieldset">
+                    <option value="">Select occupancy status</option>
 
-            <legend class="form__legend">Additional Information</legend>
+                    <option value="vacant">Vacant</option>
 
-            <div class="field">
+                    <option value="tenanted">Currently Tenanted</option>
 
-              <label for="message">Tell us more about your property</label>
+                    <option value="upcoming">Upcoming Vacancy</option>
 
-              <textarea id="message" name="message" rows="5"></textarea>
+                  </select>
 
-            </div>
+                  <p class="field__error">Please select occupancy status.</p>
 
-          </fieldset>
+                </div>
 
+                <div class="field">
 
+                  <label for="need">What Do You Need?</label>
 
-          <div>
+                  <select id="need" name="need" required>
 
-            <button class="button button--primary" type="submit">Submit Property Details</button>
+                    <option value="">Select what you need</option>
 
-          </div>
+                    <option value="property-leasing">Property Leasing</option>
 
-        </form>
+                    <option value="property-management">Property Management</option>
+
+                    <option value="leasing-management">Leasing + Management</option>
+
+                    <option value="portfolio-management">Portfolio Management</option>
+
+                    <option value="commercial-property-management">Commercial Property Management</option>
+
+                  </select>
+
+                  <p class="field__error">Please tell us what you need.</p>
+
+                </div>
+
+              </div>
+
+            </fieldset>
+
+            <fieldset class="form__fieldset">
+
+              <legend class="sr-only">Additional Information</legend>
+
+              <div class="field">
+
+                <label for="message">Tell us more about your property</label>
+
+                <textarea id="message" name="message" rows="4" placeholder="Anything else we should know"></textarea>
+
+              </div>
+
+            </fieldset>
+
+            <button class="form__submit" type="submit">Submit Property Details <span aria-hidden="true">→</span></button>
+
+          </form>
+
+        </div>
 
       </div>
 

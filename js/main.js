@@ -344,7 +344,8 @@
     event.preventDefault();
     var valid = true;
 
-    var name = form.querySelector("#full-name");
+    var firstName = form.querySelector("#first-name");
+    var lastName = form.querySelector("#last-name");
     var email = form.querySelector("#email");
     var phone = form.querySelector("#phone");
     var propertyType = form.querySelector("#property-type");
@@ -352,11 +353,18 @@
     var occupancy = form.querySelector("#occupancy");
     var need = form.querySelector("#need");
 
-    if (!name.value.trim()) {
-      setInvalid(name, true, "Please enter your full name.");
+    if (!firstName.value.trim()) {
+      setInvalid(firstName, true, "Please enter your first name.");
       valid = false;
     } else {
-      setInvalid(name, false);
+      setInvalid(firstName, false);
+    }
+
+    if (!lastName.value.trim()) {
+      setInvalid(lastName, true, "Please enter your last name.");
+      valid = false;
+    } else {
+      setInvalid(lastName, false);
     }
 
     if (!isEmail(email.value.trim())) {
