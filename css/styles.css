@@ -1809,9 +1809,13 @@ body.is-nav-open .site-header {
   .what-we-do__item:nth-child(odd) .what-we-do__body {
     grid-column: 1;
     justify-self: end;
-    text-align: left;
+    text-align: right;
     width: min(100%, 24.5rem);
     padding-right: 0.25rem;
+  }
+
+  .what-we-do__item:nth-child(odd) .what-we-do__text {
+    margin-left: auto;
   }
 
   .what-we-do__item:nth-child(even) .what-we-do__body {
