@@ -1135,6 +1135,60 @@ body.is-nav-open .site-header {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Property types — image cards                                                */
+/* -------------------------------------------------------------------------- */
+
+.property-types {
+  list-style: none;
+  display: grid;
+  gap: 1.85rem 1.35rem;
+}
+
+@media (min-width: 640px) {
+  .property-types {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .property-types {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem 1.5rem;
+  }
+}
+
+.property-types__card {
+  margin: 0;
+}
+
+.property-types__card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.property-types__card figcaption {
+  padding-top: 0.95rem;
+}
+
+.property-types__card h3 {
+  margin: 0 0 0.35rem;
+  color: var(--color-accent);
+  font-size: 1.12rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.property-types__card p {
+  margin: 0;
+  max-width: 28ch;
+  color: var(--color-ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Who we help — chip, statement, numbered list + photo                       */
 /* -------------------------------------------------------------------------- */
 
