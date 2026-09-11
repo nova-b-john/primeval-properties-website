@@ -1594,6 +1594,10 @@ body.is-nav-open .site-header {
   border-top: 1px solid var(--color-line);
 }
 
+.service-block > .container.section--center {
+  margin-bottom: 2.75rem;
+}
+
 .service-block .actions {
   margin-top: var(--space-6);
 }
