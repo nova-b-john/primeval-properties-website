@@ -284,7 +284,7 @@ address {
 }
 
 .about-fan h2 {
-  max-width: 46rem;
+  max-width: 64rem;
   margin-inline: auto;
   font-size: clamp(1.7rem, 3.6vw, 2.65rem);
   font-weight: 500;
