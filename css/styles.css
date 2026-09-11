@@ -219,20 +219,6 @@ address {
   background: var(--color-paper-raised);
 }
 
-.section__index {
-  margin: 0 0 var(--space-4);
-  font-family: var(--font-display);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
-
-.section--dark .section__index {
-  color: #c4a574;
-}
-
 .eyebrow {
   margin: 0 0 var(--space-4);
   font-size: var(--text-xs);
@@ -475,7 +461,7 @@ address {
 
 .site-header.is-scrolled,
 body.is-nav-open .site-header {
-  background: rgba(18, 16, 14, 0.38);
+  background: rgba(18, 16, 14, 0.22);
   backdrop-filter: blur(22px) saturate(160%);
   -webkit-backdrop-filter: blur(22px) saturate(160%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
