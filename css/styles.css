@@ -1749,18 +1749,23 @@ body.is-nav-open .site-header {
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 2px;
+    width: 1.5rem;
     transform: translateX(-50%);
     pointer-events: none;
-    z-index: 2;
+    z-index: 1;
+    overflow: visible;
   }
 
   .what-we-do__line {
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
     width: 2px;
-    margin: 0 auto;
+    margin: 0;
     background: #d4e2f8;
+    transform: translateX(-50%);
+    z-index: 0;
   }
 
   .what-we-do__progress {
@@ -1771,6 +1776,7 @@ body.is-nav-open .site-header {
     height: 0;
     transform: translateX(-50%);
     background: #9eb9ed;
+    z-index: 1;
   }
 
   .what-we-do__dot {
@@ -1781,8 +1787,9 @@ body.is-nav-open .site-header {
     height: 0.7rem;
     border-radius: 50%;
     background: var(--color-accent);
-    box-shadow: 0 0 0 6px var(--color-paper);
+    box-shadow: 0 0 0 6px #fff;
     transform: translate(-50%, -50%);
+    z-index: 5;
   }
 
   .what-we-do__item {
@@ -1792,6 +1799,7 @@ body.is-nav-open .site-header {
     padding-block: 0.85rem;
     opacity: 0.34;
     position: relative;
+    z-index: 2;
   }
 
   .what-we-do__item.is-active {
@@ -1808,6 +1816,8 @@ body.is-nav-open .site-header {
     border-radius: 50%;
     background: var(--color-line-strong);
     transform: translateX(-50%);
+    box-shadow: 0 0 0 5px #fff;
+    z-index: 3;
   }
 
   .what-we-do__item.is-active::before {
