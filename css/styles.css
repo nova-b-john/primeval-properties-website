@@ -6,7 +6,7 @@
 :root {
   --color-paper: #ffffff;
   --color-paper-raised: #ffffff;
-  --color-paper-sunken: #f4f4f4;
+  --color-paper-sunken: #ffffff;
   --color-ink: #1c1814;
   --color-ink-soft: #5c564e;
   --color-ink-faint: #8a8378;
@@ -68,6 +68,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 0.75rem);
+  background: #ffffff;
 }
 
 body {
