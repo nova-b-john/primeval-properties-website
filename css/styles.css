@@ -245,7 +245,7 @@ address {
 
 .section-head--row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1.25rem 2rem;
   max-width: none;
@@ -255,6 +255,15 @@ address {
   flex: 1;
   min-width: 0;
   margin-bottom: 0;
+}
+
+.section-head--row > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.section-head--row .lead {
+  margin-top: 0.65rem;
 }
 
 .section-head--row .button {
