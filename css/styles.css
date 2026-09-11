@@ -269,7 +269,8 @@ address {
   text-align: center;
 }
 
-.about-fan__chip {
+.about-fan__chip,
+.who-we-help__chip {
   display: inline-flex;
   align-items: center;
   margin: 0 0 1.65rem;
@@ -1116,6 +1117,90 @@ body.is-nav-open .site-header {
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
   color: var(--color-ink-faint);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Who we help — chip, statement, numbered list + photo                       */
+/* -------------------------------------------------------------------------- */
+
+.who-we-help__chip {
+  margin-bottom: 1.25rem;
+}
+
+.who-we-help__grid {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.who-we-help h2 {
+  max-width: 16ch;
+  margin: 0 0 2.35rem;
+  font-size: clamp(1.85rem, 3.6vw, 2.85rem);
+  font-weight: 500;
+  letter-spacing: -0.038em;
+  line-height: 1.15;
+}
+
+.who-we-help__list {
+  list-style: none;
+  display: grid;
+  gap: 1.55rem;
+}
+
+.who-we-help__list h3 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.who-we-help__num {
+  font-weight: 500;
+}
+
+.who-we-help__list p {
+  max-width: 34rem;
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.who-we-help__media {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 1.15rem;
+}
+
+.who-we-help__media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 900px) {
+  .who-we-help__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(2.75rem, 5vw, 4.75rem);
+    align-items: stretch;
+  }
+
+  .who-we-help h2 {
+    margin-bottom: 2.75rem;
+  }
+
+  .who-we-help__media {
+    position: relative;
+    min-height: 100%;
+  }
+
+  .who-we-help__media img {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    min-height: 36rem;
+  }
 }
 
 .locations {
