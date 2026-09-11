@@ -253,6 +253,17 @@ address {
   margin-inline: auto;
 }
 
+@media (max-width: 899px) {
+  section[aria-labelledby="what-we-do"] .section--center {
+    text-align: left;
+  }
+
+  section[aria-labelledby="what-we-do"] .section--center .section-head,
+  section[aria-labelledby="what-we-do"] .section--center .lead {
+    margin-inline: 0;
+  }
+}
+
 .section-head h2,
 .section-head h1 {
   margin-bottom: var(--space-4);
@@ -1180,7 +1191,23 @@ body.is-nav-open .site-header {
 }
 
 @media (min-width: 900px) {
+  .who-we-help.section {
+    padding-block: 0;
+  }
+
+  .who-we-help__pin {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--header-h) + 1.5rem) 0 2.5rem;
+    background: var(--color-paper);
+  }
+
   .who-we-help__grid {
+    width: 100%;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
     gap: clamp(2.75rem, 5vw, 4.75rem);
     align-items: start;
@@ -1190,10 +1217,40 @@ body.is-nav-open .site-header {
     margin-bottom: 2.75rem;
   }
 
+  .who-we-help__copy {
+    overflow: hidden;
+  }
+
+  .who-we-help__copy-inner {
+    will-change: transform;
+  }
+
   .who-we-help__media img {
     aspect-ratio: 4 / 5;
     height: auto;
-    max-height: 38rem;
+    max-height: min(38rem, calc(100vh - var(--header-h) - 4rem));
+  }
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: reduce) {
+  .who-we-help.section {
+    padding-block: clamp(4.25rem, 9vw, 8.25rem);
+  }
+
+  .who-we-help__pin {
+    position: static;
+    min-height: 0;
+    display: block;
+    padding: 0;
+  }
+
+  .who-we-help__copy {
+    overflow: visible;
+  }
+
+  .who-we-help__copy-inner {
+    will-change: auto;
+    transform: none !important;
   }
 }
 
@@ -1427,10 +1484,14 @@ body.is-nav-open .site-header {
 /* Forms                                                                       */
 /* -------------------------------------------------------------------------- */
 
+.enquiry.section {
+  padding-block: clamp(1.75rem, 4vw, 3rem);
+}
+
 .enquiry-card {
-  width: min(100%, 34rem);
+  width: min(100%, 40rem);
   margin-inline: auto;
-  padding: clamp(1.65rem, 3.5vw, 2.35rem);
+  padding: clamp(1.35rem, 2.8vw, 1.85rem) clamp(1.35rem, 3vw, 2rem);
   border: 1px solid #ececec;
   border-radius: 1.5rem;
   background: #fff;
@@ -1438,16 +1499,16 @@ body.is-nav-open .site-header {
 
 .form {
   display: grid;
-  gap: 1.35rem;
+  gap: 0.95rem;
   scroll-margin-top: calc(var(--header-h) + 1.25rem);
 }
 
 .form__intro {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.15rem;
 }
 
 .form__intro h2 {
-  margin: 0 0 0.45rem;
+  margin: 0 0 0.35rem;
   font-size: clamp(1.45rem, 2.4vw, 1.7rem);
   font-weight: 600;
   letter-spacing: -0.035em;
@@ -1474,12 +1535,12 @@ body.is-nav-open .site-header {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 1.15rem;
+  gap: 0.85rem;
 }
 
 .form__row {
   display: grid;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
 @media (min-width: 640px) {
@@ -1494,7 +1555,7 @@ body.is-nav-open .site-header {
 
 .field {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.32rem;
 }
 
 .field label {
@@ -1508,8 +1569,8 @@ body.is-nav-open .site-header {
 .field select,
 .field textarea {
   width: 100%;
-  min-height: 2.7rem;
-  padding: 0.7rem 0.95rem;
+  min-height: 2.55rem;
+  padding: 0.6rem 0.9rem;
   border: 1px solid #eee;
   border-radius: 0.7rem;
   background: #f7f7f7;
@@ -1536,7 +1597,7 @@ body.is-nav-open .site-header {
 }
 
 .field textarea {
-  min-height: 6.5rem;
+  min-height: 4.75rem;
   resize: vertical;
 }
 
@@ -1578,9 +1639,9 @@ body.is-nav-open .site-header {
   justify-content: center;
   gap: 0.45rem;
   width: 100%;
-  min-height: 2.85rem;
-  margin-top: 0.35rem;
-  padding: 0.8rem 1.25rem;
+  min-height: 2.7rem;
+  margin-top: 0.15rem;
+  padding: 0.7rem 1.25rem;
   border: 0;
   border-radius: 0.85rem;
   background: #0a0a0a;
@@ -1634,6 +1695,30 @@ body.is-nav-open .site-header {
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   color: var(--color-ink-soft);
+}
+
+.section--direct {
+  background-color: #b39d70;
+  background-image: radial-gradient(
+    ellipse 70% 95% at 50% 62%,
+    #f3d57a 0%,
+    #e4c05e 24%,
+    #cbb05c 48%,
+    #b49a66 72%,
+    #9d8e6e 100%
+  );
+}
+
+.section--direct .contact-direct {
+  border-top-color: rgba(28, 24, 20, 0.16);
+}
+
+.section--direct .contact-direct a {
+  border-bottom-color: rgba(28, 24, 20, 0.16);
+}
+
+.section--direct .contact-direct small {
+  color: rgba(28, 24, 20, 0.62);
 }
 
 /* -------------------------------------------------------------------------- */

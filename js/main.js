@@ -296,7 +296,81 @@
     if (!ticking) applyParallax();
   }
 
+  function initWhoWeHelp() {
+    var section = document.querySelector(".who-we-help");
+    if (!section) return;
+
+    var pin = section.querySelector(".who-we-help__pin");
+    var copy = section.querySelector(".who-we-help__copy");
+    var inner = section.querySelector(".who-we-help__copy-inner");
+    var media = section.querySelector(".who-we-help__media");
+    if (!pin || !copy || !inner || !media) return;
+
+    var desktopQuery = window.matchMedia("(min-width: 900px)");
+    var reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var overflow = 0;
+    var ticking = false;
+
+    function canPin() {
+      return desktopQuery.matches && !reduceQuery.matches;
+    }
+
+    function reset() {
+      overflow = 0;
+      section.style.height = "";
+      copy.style.height = "";
+      inner.style.transform = "";
+    }
+
+    function update() {
+      if (!canPin() || overflow <= 0) return;
+      var y = -section.getBoundingClientRect().top;
+      if (y < 0) y = 0;
+      if (y > overflow) y = overflow;
+      inner.style.transform = "translate3d(0, " + -y + "px, 0)";
+    }
+
+    function measure() {
+      if (!canPin()) {
+        reset();
+        return;
+      }
+
+      inner.style.transform = "none";
+      copy.style.height = "auto";
+      section.style.height = "auto";
+
+      var viewH = media.offsetHeight;
+      if (viewH < 1) return;
+
+      copy.style.height = viewH + "px";
+      overflow = Math.max(0, inner.scrollHeight - viewH);
+      section.style.height = pin.offsetHeight + overflow + "px";
+      update();
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        update();
+        ticking = false;
+      });
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", measure);
+
+    var img = media.querySelector("img");
+    if (img && !img.complete) {
+      img.addEventListener("load", measure);
+    }
+
+    measure();
+  }
+
   initAboutFan();
+  initWhoWeHelp();
 
   var form = document.getElementById("property-enquiry");
   if (!form) return;
