@@ -293,6 +293,12 @@ address {
   text-wrap: balance;
 }
 
+.about-fan__word {
+  display: inline;
+  color: var(--color-ink);
+  opacity: 0.16;
+}
+
 .about-fan__gallery {
   position: relative;
   width: 100%;
@@ -380,6 +386,10 @@ address {
 
   .about-fan__card-inner {
     transform: none !important;
+  }
+
+  .about-fan__word {
+    opacity: 1;
   }
 }
 

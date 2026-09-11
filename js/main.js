@@ -136,6 +136,40 @@
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+    var heading = document.getElementById("owners-problem");
+    var words = [];
+
+    if (heading && !reduce) {
+      heading.innerHTML = heading.textContent
+        .trim()
+        .split(/(\s+)/)
+        .map(function (token) {
+          if (/^\s+$/.test(token)) return token;
+          return '<span class="about-fan__word">' + token + "</span>";
+        })
+        .join("");
+      words = Array.prototype.slice.call(heading.querySelectorAll(".about-fan__word"));
+    }
+
+    function updateCopyReveal() {
+      if (!heading || !words.length) return;
+      var vh = window.innerHeight;
+      var top = heading.getBoundingClientRect().top;
+      var start = vh * 0.9;
+      var end = vh * 0.04;
+      var p = (start - top) / (start - end);
+      if (p < 0) p = 0;
+      if (p > 1) p = 1;
+
+      var n = words.length;
+      for (var w = 0; w < n; w++) {
+        var local = (p - w / n) / 0.26;
+        if (local < 0) local = 0;
+        if (local > 1) local = 1;
+        words[w].style.opacity = String(0.16 + local * 0.84);
+      }
+    }
+
     function layout() {
       var width = window.innerWidth;
       var cardW = cards[0].offsetWidth;
@@ -179,6 +213,8 @@
 
     layout();
     window.addEventListener("resize", layout);
+    window.addEventListener("scroll", updateCopyReveal, { passive: true });
+    updateCopyReveal();
 
     function showFan() {
       gallery.classList.add("is-in");
