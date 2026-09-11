@@ -261,6 +261,20 @@ address {
   flex-shrink: 0;
 }
 
+.section-head--single {
+  max-width: none;
+}
+
+.section-head--single h2 {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .section-head--single h2 {
+    white-space: normal;
+  }
+}
+
 @media (max-width: 899px) {
   .section-head--row {
     flex-direction: column;
