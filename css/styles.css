@@ -1454,6 +1454,25 @@ body.is-nav-open .site-header {
   background-size: 7.4rem 7.4rem;
 }
 
+.hero--page.hero--grid {
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 248, 240, 0.045) 0,
+      rgba(255, 248, 240, 0.045) 1px,
+      transparent 1px,
+      transparent 1.85rem
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 248, 240, 0.045) 0,
+      rgba(255, 248, 240, 0.045) 1px,
+      transparent 1px,
+      transparent 1.85rem
+    );
+  background-size: 1.85rem 1.85rem;
+}
+
 .hero--page .hero__media,
 .hero--page::after {
   display: none;
