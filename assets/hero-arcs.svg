@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="#fff8f0" fill-opacity="0.045">
+  <defs>
+    <clipPath id="s"><rect width="40" height="40"/></clipPath>
+  </defs>
+  <!-- D = circle at left, C = right, v = top, ^ = bottom -->
+  <g transform="translate(0,0)" clip-path="url(#s)"><circle cx="0" cy="20" r="20"/></g>
+  <g transform="translate(40,0)" clip-path="url(#s)"><circle cx="40" cy="20" r="20"/></g>
+  <g transform="translate(80,0)" clip-path="url(#s)"><circle cx="0" cy="20" r="20"/></g>
+  <g transform="translate(120,0)" clip-path="url(#s)"><circle cx="20" cy="0" r="20"/></g>
+  <g transform="translate(0,40)" clip-path="url(#s)"><circle cx="20" cy="40" r="20"/></g>
+  <g transform="translate(40,40)" clip-path="url(#s)"><circle cx="40" cy="20" r="20"/></g>
+  <g transform="translate(80,40)" clip-path="url(#s)"><circle cx="40" cy="20" r="20"/></g>
+  <g transform="translate(120,40)" clip-path="url(#s)"><circle cx="20" cy="40" r="20"/></g>
+  <g transform="translate(0,80)" clip-path="url(#s)"><circle cx="40" cy="20" r="20"/></g>
+  <g transform="translate(40,80)" clip-path="url(#s)"><circle cx="0" cy="20" r="20"/></g>
+  <g transform="translate(80,80)" clip-path="url(#s)"><circle cx="20" cy="0" r="20"/></g>
+  <g transform="translate(120,80)" clip-path="url(#s)"><circle cx="40" cy="20" r="20"/></g>
+  <g transform="translate(0,120)" clip-path="url(#s)"><circle cx="20" cy="0" r="20"/></g>
+  <g transform="translate(40,120)" clip-path="url(#s)"><circle cx="20" cy="40" r="20"/></g>
+  <g transform="translate(80,120)" clip-path="url(#s)"><circle cx="40" cy="20" r="20"/></g>
+  <g transform="translate(120,120)" clip-path="url(#s)"><circle cx="20" cy="0" r="20"/></g>
+</svg>

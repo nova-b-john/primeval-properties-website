@@ -122,6 +122,256 @@
 
   document.querySelectorAll(".what-we-do").forEach(initWhatWeDo);
 
+  function initAboutFan() {
+    var section = document.querySelector(".about-fan");
+    var gallery = document.querySelector(".about-fan__gallery");
+    if (!section || !gallery) return;
+
+    var track = gallery.querySelector(".about-fan__track");
+    if (!track) return;
+
+    var cards = Array.prototype.slice.call(track.querySelectorAll(".about-fan__card"));
+    if (!cards.length) return;
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    var heading = document.getElementById("owners-problem");
+    var words = [];
+
+    if (heading && !reduce) {
+      heading.innerHTML = heading.textContent
+        .trim()
+        .split(/(\s+)/)
+        .map(function (token) {
+          if (/^\s+$/.test(token)) return token;
+          return '<span class="about-fan__word">' + token + "</span>";
+        })
+        .join("");
+      words = Array.prototype.slice.call(heading.querySelectorAll(".about-fan__word"));
+    }
+
+    function updateCopyReveal() {
+      if (!heading || !words.length) return;
+      var vh = window.innerHeight;
+      var top = heading.getBoundingClientRect().top;
+      var start = vh * 0.88;
+      var end = vh * 0.36;
+      var p = (start - top) / (start - end);
+      if (p < 0) p = 0;
+      if (p > 1) p = 1;
+
+      var n = words.length;
+      var last = Math.max(n - 1, 1);
+      for (var w = 0; w < n; w++) {
+        var local = (p - (w / last) * 0.7) / 0.3;
+        if (local < 0) local = 0;
+        if (local > 1) local = 1;
+        words[w].style.opacity = String(0.16 + local * 0.84);
+      }
+    }
+
+    function layout() {
+      var width = window.innerWidth;
+      var cardW = cards[0].offsetWidth;
+      var n = cards.length;
+      var span = width * 1.16;
+      var start = (width - span) / 2;
+      var stride = n > 1 ? (span - cardW) / (n - 1) : 0;
+      var arc = width < 600 ? 42 : width < 900 ? 64 : 92;
+      var rotate = width < 600 ? 5.5 : 7.2;
+      var minScale = width < 600 ? 0.84 : 0.78;
+      var maxScale = width < 600 ? 1.06 : 1.12;
+      var mid = width / 2;
+
+      cards.forEach(function (card, index) {
+        var x = start + index * stride;
+        var t = (x + cardW / 2 - mid) / (width * 0.52);
+        if (t < -1.25) t = -1.25;
+        if (t > 1.25) t = 1.25;
+        var abs = Math.abs(t);
+        var y = arc * (abs * abs);
+        var scale = minScale + (maxScale - minScale) * abs;
+        var rot = t * rotate;
+        var xStart = mid - cardW / 2 + (x - (mid - cardW / 2)) * 0.58;
+
+        card.dataset.t = String(t);
+        card.dataset.x = String(x);
+        card.dataset.y = String(y);
+        card.dataset.rot = String(rot);
+        card.dataset.scale = String(scale);
+        card.style.setProperty("--tx", x + "px");
+        card.style.setProperty("--ty", y + "px");
+        card.style.setProperty("--rot", rot + "deg");
+        card.style.setProperty("--scale", String(scale));
+        card.style.setProperty("--tx-start", xStart + "px");
+        card.style.setProperty("--ty-start", y * 0.18 + "px");
+        card.style.setProperty("--scale-start", "0.92");
+        card.style.setProperty("--delay", index * 70 + "ms");
+        card.style.zIndex = String(Math.round(abs * 20));
+      });
+    }
+
+    layout();
+    window.addEventListener("resize", layout);
+    window.addEventListener("scroll", updateCopyReveal, { passive: true });
+    updateCopyReveal();
+
+    function showFan() {
+      gallery.classList.add("is-in");
+    }
+
+    if (reduce) {
+      showFan();
+      return;
+    }
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            showFan();
+            observer.disconnect();
+          });
+        },
+        { threshold: 0.25 }
+      );
+      observer.observe(gallery);
+    } else {
+      showFan();
+    }
+
+    if (!canHover) return;
+
+    var inners = cards.map(function (card) {
+      return card.querySelector(".about-fan__card-inner");
+    });
+    var targetX = 0;
+    var targetY = 0;
+    var currentX = 0;
+    var currentY = 0;
+    var ticking = false;
+
+    function applyParallax() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      cards.forEach(function (card, index) {
+        var inner = inners[index];
+        if (!inner) return;
+        var t = parseFloat(card.dataset.t || "0");
+        var strength = 0.35 + Math.abs(t) * 0.65;
+        var rot = currentX * 3.2 * strength;
+        var dx = currentX * 10 * strength;
+        var dy = currentY * 6 * strength;
+        inner.style.transform =
+          "translate3d(" + dx + "px, " + dy + "px, 0) rotate(" + rot + "deg)";
+      });
+
+      ticking = true;
+      requestAnimationFrame(applyParallax);
+    }
+
+    section.addEventListener(
+      "mousemove",
+      function (event) {
+        var rect = gallery.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+        targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+        if (targetX < -1) targetX = -1;
+        if (targetX > 1) targetX = 1;
+        if (targetY < -1) targetY = -1;
+        if (targetY > 1) targetY = 1;
+      },
+      { passive: true }
+    );
+
+    section.addEventListener("mouseleave", function () {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    if (!ticking) applyParallax();
+  }
+
+  function initWhoWeHelp() {
+    var section = document.querySelector(".who-we-help");
+    if (!section) return;
+
+    var pin = section.querySelector(".who-we-help__pin");
+    var copy = section.querySelector(".who-we-help__copy");
+    var inner = section.querySelector(".who-we-help__copy-inner");
+    var media = section.querySelector(".who-we-help__media");
+    if (!pin || !copy || !inner || !media) return;
+
+    var desktopQuery = window.matchMedia("(min-width: 900px)");
+    var reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var overflow = 0;
+    var ticking = false;
+
+    function canPin() {
+      return desktopQuery.matches && !reduceQuery.matches;
+    }
+
+    function reset() {
+      overflow = 0;
+      section.style.height = "";
+      copy.style.height = "";
+      inner.style.transform = "";
+    }
+
+    function update() {
+      if (!canPin() || overflow <= 0) return;
+      var y = -section.getBoundingClientRect().top;
+      if (y < 0) y = 0;
+      if (y > overflow) y = overflow;
+      inner.style.transform = "translate3d(0, " + -y + "px, 0)";
+    }
+
+    function measure() {
+      if (!canPin()) {
+        reset();
+        return;
+      }
+
+      inner.style.transform = "none";
+      copy.style.height = "auto";
+      section.style.height = "auto";
+
+      var viewH = media.offsetHeight;
+      if (viewH < 1) return;
+
+      copy.style.height = viewH + "px";
+      overflow = Math.max(0, inner.scrollHeight - viewH);
+      section.style.height = pin.offsetHeight + overflow + "px";
+      update();
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        update();
+        ticking = false;
+      });
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", measure);
+
+    var img = media.querySelector("img");
+    if (img && !img.complete) {
+      img.addEventListener("load", measure);
+    }
+
+    measure();
+  }
+
+  initAboutFan();
+  initWhoWeHelp();
+
   var form = document.getElementById("property-enquiry");
   if (!form) return;
 
@@ -168,7 +418,8 @@
     event.preventDefault();
     var valid = true;
 
-    var name = form.querySelector("#full-name");
+    var firstName = form.querySelector("#first-name");
+    var lastName = form.querySelector("#last-name");
     var email = form.querySelector("#email");
     var phone = form.querySelector("#phone");
     var propertyType = form.querySelector("#property-type");
@@ -176,11 +427,18 @@
     var occupancy = form.querySelector("#occupancy");
     var need = form.querySelector("#need");
 
-    if (!name.value.trim()) {
-      setInvalid(name, true, "Please enter your full name.");
+    if (!firstName.value.trim()) {
+      setInvalid(firstName, true, "Please enter your first name.");
       valid = false;
     } else {
-      setInvalid(name, false);
+      setInvalid(firstName, false);
+    }
+
+    if (!lastName.value.trim()) {
+      setInvalid(lastName, true, "Please enter your last name.");
+      valid = false;
+    } else {
+      setInvalid(lastName, false);
     }
 
     if (!isEmail(email.value.trim())) {
