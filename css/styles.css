@@ -1597,9 +1597,11 @@ body.is-nav-open .site-header {
 .footer-feature img {
   width: 200px;
   height: 200px;
-  object-fit: cover;
-  object-position: center 70%;
+  padding: 1.85rem;
+  object-fit: contain;
+  object-position: center;
   border-radius: 1.15rem;
+  background: #fff;
 }
 
 .footer-feature p {
