@@ -264,7 +264,7 @@ address {
 
 .about-fan {
   padding-top: clamp(4.75rem, 10vw, 8rem);
-  padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  padding-bottom: 0;
   overflow: hidden;
   text-align: center;
 }
@@ -294,52 +294,47 @@ address {
 }
 
 .about-fan__gallery {
-  overflow: hidden;
+  position: relative;
   width: 100%;
+  height: clamp(22rem, 44vw, 34rem);
   margin: 3.25rem 0 0;
-  padding: 0.75rem 0 0.35rem;
-  perspective: 1200px;
-  perspective-origin: 50% 70%;
+  overflow: hidden;
 }
 
 .about-fan__track {
-  display: flex;
-  width: max-content;
-  animation: about-fan-ltr 42s linear infinite;
-}
-
-.about-fan__set {
-  display: flex;
-  align-items: flex-end;
-  gap: clamp(0.35rem, 1.1vw, 0.85rem);
-  padding-right: clamp(0.35rem, 1.1vw, 0.85rem);
-}
-
-.about-fan__gallery:hover .about-fan__track {
-  animation-play-state: paused;
-}
-
-@keyframes about-fan-ltr {
-  from {
-    transform: translateX(-50%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
+  position: absolute;
+  inset: 0;
 }
 
 .about-fan__card {
-  position: relative;
-  flex: 0 0 auto;
-  width: clamp(7.25rem, 12.5vw, 11.75rem);
-  height: clamp(11.5rem, 20vw, 18.5rem);
+  position: absolute;
+  top: 8%;
+  left: 0;
+  width: clamp(9.25rem, 14.5vw, 13.75rem);
+  height: clamp(15.5rem, 30vw, 23.5rem);
   margin: 0;
   overflow: hidden;
-  border-radius: 1.35rem;
+  border-radius: 1.5rem;
   background: var(--color-line);
   box-shadow: 0 18px 36px rgba(28, 24, 20, 0.16);
-  transform-origin: center 85%;
+  transform-origin: top center;
+  opacity: 0;
+  transform: translate3d(var(--tx-start), var(--ty-start), 0) rotate(0deg) scale(var(--scale-start, 0.92));
+  transition: transform 0.72s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.about-fan__gallery.is-in .about-fan__card {
+  opacity: 1;
+  transform: translate3d(var(--tx), var(--ty), 0) rotate(var(--rot)) scale(var(--scale));
+}
+
+.about-fan__card-inner {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .about-fan__card img {
@@ -347,69 +342,44 @@ address {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  pointer-events: none;
 }
 
-.about-fan__card:nth-child(1) {
-  z-index: 7;
-  transform: rotateY(42deg) translateY(-0.15rem) scale(1.08);
-}
-
-.about-fan__card:nth-child(2) {
-  z-index: 6;
-  transform: rotateY(28deg) translateY(0.85rem) scale(1.04);
-}
-
-.about-fan__card:nth-child(3) {
-  z-index: 5;
-  transform: rotateY(14deg) translateY(1.7rem) scale(1.01);
-}
-
-.about-fan__card:nth-child(4) {
-  z-index: 4;
-  transform: rotateY(0deg) translateY(2.35rem);
-}
-
-.about-fan__card:nth-child(5) {
-  z-index: 5;
-  transform: rotateY(-14deg) translateY(1.7rem) scale(1.01);
-}
-
-.about-fan__card:nth-child(6) {
-  z-index: 6;
-  transform: rotateY(-28deg) translateY(0.85rem) scale(1.04);
-}
-
-.about-fan__card:nth-child(7) {
-  z-index: 7;
-  transform: rotateY(-42deg) translateY(-0.15rem) scale(1.08);
-}
-
-@media (max-width: 520px) {
+@media (max-width: 900px) {
   .about-fan__gallery {
-    margin-top: 2.5rem;
+    height: clamp(18.5rem, 48vw, 26rem);
+    margin-top: 2.75rem;
   }
 
   .about-fan__card {
-    width: 6.4rem;
-    height: 10.25rem;
+    width: clamp(7.5rem, 18vw, 10.5rem);
+    height: clamp(12.25rem, 30vw, 17.5rem);
+    border-radius: 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-fan__gallery {
+    height: 17.5rem;
+    margin-top: 2.25rem;
+  }
+
+  .about-fan__card {
+    width: 6.85rem;
+    height: 11.25rem;
     border-radius: 1.05rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-fan__track {
-    animation: none;
-    justify-content: center;
-    width: 100%;
+  .about-fan__card {
+    opacity: 1;
+    transform: translate3d(var(--tx), var(--ty), 0) rotate(var(--rot)) scale(var(--scale));
+    transition: none;
   }
 
-  .about-fan__set + .about-fan__set {
-    display: none;
-  }
-
-  .about-fan__card,
-  .about-fan__card:nth-child(n) {
-    transform: none;
+  .about-fan__card-inner {
+    transform: none !important;
   }
 }
 
