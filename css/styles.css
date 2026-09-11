@@ -1440,7 +1440,13 @@ body.is-nav-open .site-header {
 .hero--page {
   min-height: 0;
   padding: calc(var(--header-h) + 4.75rem) 1.5rem 5.25rem;
-  background: var(--color-accent);
+  background-color: var(--color-accent);
+  background-image: radial-gradient(
+    circle at center,
+    rgba(255, 248, 240, 0.16) 0 0.78rem,
+    transparent 0.8rem
+  );
+  background-size: 1.85rem 1.85rem;
 }
 
 .hero--page .hero__media,
