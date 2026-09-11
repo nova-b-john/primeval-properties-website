@@ -1443,7 +1443,7 @@ body.is-nav-open .site-header {
   background-color: var(--color-accent);
   background-image: radial-gradient(
     circle at center,
-    rgba(255, 248, 240, 0.07) 0 0.78rem,
+    rgba(255, 248, 240, 0.045) 0 0.78rem,
     transparent 0.8rem
   );
   background-size: 1.85rem 1.85rem;
