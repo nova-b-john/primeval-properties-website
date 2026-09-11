@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Let's Talk About Your Property | Primeval Properties</title>
+  <meta name="description" content="Send your Abu Dhabi property details to Primeval Properties. We will review your requirements and discuss the right leasing or management solution.">
+  <link rel="icon" href="public/fav.png" type="image/png">
+  <link rel="apple-touch-icon" href="public/fav.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand__mark" src="public/fav.png" alt="" width="40" height="40">
+        <span class="brand__name">Primeval</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open menu</span>
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+        <a class="button button--pill header-cta header-cta--menu" href="#property-enquiry">Manage My Property</a>
+      </nav>
+      <a class="button button--pill header-cta header-cta--bar" href="#property-enquiry">Manage My Property</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero hero--page" aria-labelledby="contact-hero">
+      <img class="hero__media" src="assets/abu-dhabi-corniche.jpg" alt="" width="2000" height="1333">
+      <div class="hero__content">
+        <p class="hero__chip"><span class="hero__dot" aria-hidden="true"></span> Contact</p>
+        <h1 id="contact-hero">Let's Talk About Your Property</h1>
+        <p class="hero__lead">Tell us about your property and what you need. Our team will review your requirements and discuss the appropriate leasing or property management solution.</p>
+        <a class="button button--pill" href="#property-enquiry">Manage My Property <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="section section--raised" aria-labelledby="enquiry-heading">
+      <div class="container">
+        <p class="section__index">01</p>
+        <h2 id="enquiry-heading">Property Enquiry</h2>
+
+        <p class="form__status" id="form-status" tabindex="-1">
+          Thank you. Your property details have been received. Our team will review your enquiry and be in touch.
+        </p>
+
+        <form class="form" id="property-enquiry" action="#" method="post" novalidate>
+          <fieldset class="form__fieldset">
+            <legend class="form__legend">About You</legend>
+            <div class="form__row form__row--2">
+              <div class="field">
+                <label for="full-name">Full Name</label>
+                <input id="full-name" name="fullName" type="text" autocomplete="name" required>
+                <p class="field__error">Please enter your full name.</p>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+                <p class="field__error">Please enter a valid email address.</p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="phone">Phone / WhatsApp</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+              <p class="field__error">Please enter a phone or WhatsApp number.</p>
+            </div>
+          </fieldset>
+
+          <fieldset class="form__fieldset">
+            <legend class="form__legend">About Your Property</legend>
+            <div class="form__row form__row--2">
+              <div class="field">
+                <label for="property-type">Property Type</label>
+                <select id="property-type" name="propertyType" required>
+                  <option value="">Select property type</option>
+                  <option value="apartment">Apartment</option>
+                  <option value="villa">Villa</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="multiple">Multiple Properties</option>
+                </select>
+                <p class="field__error">Please select a property type.</p>
+              </div>
+              <div class="field">
+                <label for="property-location">Property Location</label>
+                <input id="property-location" name="propertyLocation" type="text" placeholder="e.g. Al Reem Island" required>
+                <p class="field__error">Please enter the property location.</p>
+              </div>
+            </div>
+            <div class="form__row form__row--2">
+              <div class="field">
+                <label for="occupancy">Occupancy Status</label>
+                <select id="occupancy" name="occupancy" required>
+                  <option value="">Select occupancy status</option>
+                  <option value="vacant">Vacant</option>
+                  <option value="tenanted">Currently Tenanted</option>
+                  <option value="upcoming">Upcoming Vacancy</option>
+                </select>
+                <p class="field__error">Please select occupancy status.</p>
+              </div>
+              <div class="field">
+                <label for="need">What Do You Need?</label>
+                <select id="need" name="need" required>
+                  <option value="">Select what you need</option>
+                  <option value="property-leasing">Property Leasing</option>
+                  <option value="property-management">Property Management</option>
+                  <option value="leasing-management">Leasing + Management</option>
+                  <option value="portfolio-management">Portfolio Management</option>
+                  <option value="commercial-property-management">Commercial Property Management</option>
+                </select>
+                <p class="field__error">Please tell us what you need.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form__fieldset">
+            <legend class="form__legend">Additional Information</legend>
+            <div class="field">
+              <label for="message">Tell us more about your property</label>
+              <textarea id="message" name="message" rows="5"></textarea>
+            </div>
+          </fieldset>
+
+          <div>
+            <button class="button button--primary" type="submit">Submit Property Details</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="direct-contact">
+      <div class="container split">
+        <div class="reveal">
+          <p class="section__index">02</p>
+          <h2 id="direct-contact">Prefer to Talk Directly?</h2>
+        </div>
+        <ul class="contact-direct reveal">
+          <!-- PLACEHOLDER: phone number not finalized. -->
+          <li>
+            <a href="tel:+971000000000">Call Primeval <small>+971 00 000 0000</small></a>
+          </li>
+          <!-- PLACEHOLDER: WhatsApp number not finalized. -->
+          <li>
+            <a href="https://wa.me/971000000000" rel="noopener noreferrer" target="_blank">WhatsApp Primeval <small>+971 00 000 0000</small></a>
+          </li>
+          <!-- PLACEHOLDER: email address not finalized. -->
+          <li>
+            <a href="mailto:hello@primevalproperties.ae">Email Primeval <small>hello@primevalproperties.ae</small></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-cta">
+      <img class="footer-cta__image" src="assets/abu-dhabi-corniche.jpg" alt="" width="2000" height="1333">
+      <div class="footer-cta__content">
+        <h2>Own Property<br>in Abu Dhabi?</h2>
+        <hr class="footer-cta__rule">
+        <a class="button button--footer" href="#property-enquiry">Manage My Property <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="footer-panel">
+      <div class="container footer-grid">
+        <div class="footer-feature">
+          <img src="assets/abu-dhabi-corniche.jpg" alt="Abu Dhabi Corniche skyline" width="200" height="200">
+          <p>Your Property. Professionally Managed.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Quick Link</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Quick Link</h2>
+          <ul>
+            <li><a href="services.html#property-management">Property Management</a></li>
+            <li><a href="services.html#property-leasing">Property Leasing</a></li>
+            <li><a href="services.html#residential">Residential Management</a></li>
+            <li><a href="services.html#commercial">Commercial Management</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Contact Info</h2>
+          <ul class="footer-contact">
+            <!-- PLACEHOLDER: email address not finalized. -->
+            <li>
+              <a href="mailto:hello@primevalproperties.ae">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 7l9 7 9-7"/></svg>
+                hello@primevalproperties.ae
+              </a>
+            </li>
+            <!-- PLACEHOLDER: phone number not finalized. -->
+            <li>
+              <a href="tel:+971000000000">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3c0 .8-.5 1.5-1.3 1.6C10.5 20.2 3.8 13.5 2.9 4.8 2.8 4 3.5 3.5 4.3 3.5Z"/></svg>
+                +971 00 000 0000
+              </a>
+            </li>
+            <!-- PLACEHOLDER: office address not finalized. -->
+            <li>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.2"/></svg>
+                Abu Dhabi, United Arab Emirates
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
