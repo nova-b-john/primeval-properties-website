@@ -12,8 +12,8 @@
   --color-ink-faint: #8a8378;
   --color-line: #e6e6e6;
   --color-line-strong: #d4d4d4;
-  --color-accent: #8a6a45;
-  --color-accent-deep: #6f5336;
+  --color-accent: #1b51c6;
+  --color-accent-deep: #153f9a;
   --color-on-accent: #ffffff;
   --color-dark: #161310;
   --color-on-dark: #ffffff;
@@ -280,7 +280,7 @@ address {
   box-shadow: 0 10px 28px rgba(28, 24, 20, 0.07);
   font-size: 0.84rem;
   font-weight: 500;
-  color: #c4a484;
+  color: var(--color-accent);
 }
 
 .about-fan h2 {
@@ -1875,7 +1875,7 @@ body.is-nav-open .site-header {
 }
 
 .section--dark .philosophy span {
-  color: #c4a574;
+  color: var(--color-accent);
 }
 
 .cta-band h2 {

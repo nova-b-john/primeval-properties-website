@@ -155,15 +155,16 @@
       if (!heading || !words.length) return;
       var vh = window.innerHeight;
       var top = heading.getBoundingClientRect().top;
-      var start = vh * 0.9;
-      var end = vh * 0.04;
+      var start = vh * 0.88;
+      var end = vh * 0.36;
       var p = (start - top) / (start - end);
       if (p < 0) p = 0;
       if (p > 1) p = 1;
 
       var n = words.length;
+      var last = Math.max(n - 1, 1);
       for (var w = 0; w < n; w++) {
-        var local = (p - w / n) / 0.26;
+        var local = (p - (w / last) * 0.7) / 0.3;
         if (local < 0) local = 0;
         if (local > 1) local = 1;
         words[w].style.opacity = String(0.16 + local * 0.84);
