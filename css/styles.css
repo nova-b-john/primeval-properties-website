@@ -294,15 +294,39 @@ address {
 }
 
 .about-fan__gallery {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: clamp(0.35rem, 1.1vw, 0.85rem);
-  width: min(100% + 8rem, 92rem);
-  margin: 3.25rem auto 0;
-  padding-inline: 1rem;
+  overflow: hidden;
+  width: 100%;
+  margin: 3.25rem 0 0;
+  padding: 0.75rem 0 0.35rem;
   perspective: 1200px;
   perspective-origin: 50% 70%;
+}
+
+.about-fan__track {
+  display: flex;
+  width: max-content;
+  animation: about-fan-ltr 42s linear infinite;
+}
+
+.about-fan__set {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.35rem, 1.1vw, 0.85rem);
+  padding-right: clamp(0.35rem, 1.1vw, 0.85rem);
+}
+
+.about-fan__gallery:hover .about-fan__track {
+  animation-play-state: paused;
+}
+
+@keyframes about-fan-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 .about-fan__card {
@@ -360,36 +384,8 @@ address {
   transform: rotateY(-42deg) translateY(-0.15rem) scale(1.08);
 }
 
-@media (max-width: 800px) {
-  .about-fan__card:nth-child(1),
-  .about-fan__card:nth-child(7) {
-    display: none;
-  }
-
-  .about-fan__card:nth-child(2) {
-    transform: rotateY(24deg) translateY(0.2rem) scale(1.04);
-  }
-
-  .about-fan__card:nth-child(3) {
-    transform: rotateY(12deg) translateY(1.1rem);
-  }
-
-  .about-fan__card:nth-child(4) {
-    transform: translateY(1.65rem);
-  }
-
-  .about-fan__card:nth-child(5) {
-    transform: rotateY(-12deg) translateY(1.1rem);
-  }
-
-  .about-fan__card:nth-child(6) {
-    transform: rotateY(-24deg) translateY(0.2rem) scale(1.04);
-  }
-}
-
 @media (max-width: 520px) {
   .about-fan__gallery {
-    gap: 0.35rem;
     margin-top: 2.5rem;
   }
 
@@ -401,6 +397,16 @@ address {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .about-fan__track {
+    animation: none;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .about-fan__set + .about-fan__set {
+    display: none;
+  }
+
   .about-fan__card,
   .about-fan__card:nth-child(n) {
     transform: none;
@@ -1595,13 +1601,14 @@ body.is-nav-open .site-header {
 }
 
 .footer-feature img {
+  display: block;
   width: 200px;
-  height: 200px;
-  padding: 1.85rem;
+  height: auto;
+  padding: 0;
   object-fit: contain;
   object-position: center;
-  border-radius: 1.15rem;
-  background: #fff;
+  border-radius: 0;
+  background: transparent;
 }
 
 .footer-feature p {
