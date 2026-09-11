@@ -243,6 +243,10 @@ address {
   margin-bottom: var(--space-7);
 }
 
+.section-head--wide {
+  max-width: 62rem;
+}
+
 .section--center {
   text-align: center;
 }
