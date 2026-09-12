@@ -656,7 +656,7 @@ address {
 
 .site-header.is-scrolled,
 body.is-nav-open .site-header {
-  background: rgba(18, 16, 14, 0.22);
+  background: rgba(18, 16, 14, 0.12);
   backdrop-filter: blur(22px) saturate(160%);
   -webkit-backdrop-filter: blur(22px) saturate(160%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
