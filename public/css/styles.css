@@ -1406,6 +1406,26 @@ section[aria-labelledby="principles"] .icon-tile {
   gap: 1.55rem;
 }
 
+@media (max-width: 899px) {
+  .who-we-help__list {
+    gap: 0;
+  }
+
+  .who-we-help__list li {
+    padding-block: 1.15rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .who-we-help__list li:first-child {
+    padding-top: 0;
+  }
+
+  .who-we-help__list li:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
 .who-we-help__list h3 {
   margin: 0 0 0.18rem;
   font-size: clamp(1.18rem, 1.8vw, 1.38rem);
