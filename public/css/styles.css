@@ -169,7 +169,7 @@ address {
 /* -------------------------------------------------------------------------- */
 
 .container {
-  width: min(100% - 2rem, var(--container));
+  width: min(100% - 40px, var(--container));
   margin-inline: auto;
 }
 
@@ -758,10 +758,21 @@ body.is-nav-open .site-header {
 @media (max-width: 899px) {
   .header-inner {
     min-height: 4.15rem;
+    width: min(100% - 40px, 82rem);
   }
 
   .site-nav.is-open {
     top: 4.15rem;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero,
+  .hero--page,
+  .footer-cta,
+  .what-we-do__close {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -1376,6 +1387,12 @@ section[aria-labelledby="principles"] .icon-tile {
   color: var(--color-ink-soft);
   font-size: 0.92rem;
   line-height: 1.55;
+}
+
+@media (max-width: 639px) {
+  .property-types__card p {
+    max-width: none;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
