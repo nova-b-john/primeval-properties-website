@@ -1378,6 +1378,12 @@ section[aria-labelledby="principles"] .icon-tile {
   line-height: 1.55;
 }
 
+@media (max-width: 639px) {
+  .property-types__card p {
+    max-width: none;
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /* Who we help — chip, statement, numbered list + photo                       */
 /* -------------------------------------------------------------------------- */
