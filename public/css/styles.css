@@ -780,10 +780,10 @@ address {
 
 @media (max-width: 899px) {
   body.is-nav-open .site-header {
-    background: #000;
+    background: #fff;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
   }
 
   .header-inner {
@@ -791,15 +791,32 @@ address {
     width: min(100% - 40px, 82rem);
   }
 
+  body.is-nav-open .brand,
+  body.is-nav-open .nav-toggle {
+    position: relative;
+    z-index: 2;
+  }
+
   .site-nav.is-open {
     position: fixed;
     inset: 0;
-    z-index: 40;
+    z-index: 1;
     display: flex;
     min-height: 100vh;
     min-height: 100dvh;
     padding: calc(4.15rem + 1.25rem) 20px 2.5rem;
-    background: #000;
+    background: #fff;
+  }
+
+  .site-nav.is-open a:not(.button),
+  .site-nav.is-open a[aria-current="page"] {
+    color: #111;
+  }
+
+  .site-nav.is-open .header-cta--menu {
+    background: #111;
+    color: #fff;
+    border-color: #111;
   }
 
   .hero,

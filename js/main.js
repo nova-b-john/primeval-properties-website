@@ -32,7 +32,7 @@
     header.classList.toggle("is-scrolled", window.scrollY > 8);
 
     if (document.body.classList.contains("is-nav-open")) {
-      header.classList.remove("is-on-light");
+      header.classList.add("is-on-light");
       return;
     }
 
