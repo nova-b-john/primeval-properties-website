@@ -1126,12 +1126,14 @@ body.is-nav-open .site-header {
 
   .stepper--horizontal li {
     grid-template-columns: 1fr;
+    justify-items: center;
     padding-bottom: 0;
+    text-align: center;
   }
 
   .stepper--horizontal li::after {
-    left: 2.4rem;
-    right: -1.2rem;
+    left: calc(50% + 1.35rem);
+    right: calc(-50% + 1.35rem);
     top: 0.7rem;
     bottom: auto;
     width: auto;
