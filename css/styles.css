@@ -2494,13 +2494,49 @@ section[aria-labelledby="principles"] .icon-tile {
 
 .reveal {
   opacity: 0;
-  transform: translateY(1.1rem);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(1.2rem);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+.hero__chip,
+.hero h1,
+.hero__lead,
+.hero .button {
+  animation: text-emerge 0.85s ease both;
+}
+
+.hero__chip {
+  animation-delay: 0.08s;
+}
+
+.hero h1 {
+  animation-delay: 0.16s;
+}
+
+.hero__lead {
+  animation-delay: 0.28s;
+}
+
+.hero .button {
+  animation-delay: 0.4s;
+}
+
+@keyframes text-emerge {
+  from {
+    opacity: 0;
+    transform: translateY(1.15rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -2790,5 +2826,12 @@ body.is-nav-open {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .hero__chip,
+  .hero h1,
+  .hero__lead,
+  .hero .button {
+    animation: none;
   }
 }
