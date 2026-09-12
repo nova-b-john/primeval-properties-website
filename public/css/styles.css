@@ -1141,8 +1141,9 @@ body.is-nav-open .site-header {
 
 @media (min-width: 900px) {
   .stepper--horizontal {
-    grid-template-columns: repeat(6, 1fr);
-    gap: var(--space-4);
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--space-6);
+    row-gap: var(--space-7);
   }
 
   .stepper--horizontal li {
@@ -1152,14 +1153,14 @@ body.is-nav-open .site-header {
 
   .stepper--horizontal li::after {
     left: 2.4rem;
-    right: -0.8rem;
+    right: -1.2rem;
     top: 0.7rem;
     bottom: auto;
     width: auto;
     height: 1px;
   }
 
-  .stepper--horizontal li:last-child::after {
+  .stepper--horizontal li:nth-child(3n)::after {
     display: none;
   }
 }
