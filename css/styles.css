@@ -1324,6 +1324,12 @@ section[aria-labelledby="principles"] .icon-tile {
   font-size: var(--text-xl);
 }
 
+@media (max-width: 899px) {
+  .personas li {
+    font-size: 1.15rem;
+  }
+}
+
 .personas__label {
   display: inline-flex;
   align-items: center;
@@ -2664,7 +2670,7 @@ section[aria-labelledby="principles"] .icon-tile {
 .philosophy {
   display: grid;
   gap: var(--space-5);
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 @media (max-width: 799px) {
