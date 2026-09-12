@@ -2325,6 +2325,18 @@ section[aria-labelledby="principles"] .icon-tile {
   align-items: start;
 }
 
+@media (max-width: 899px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.25rem;
+  }
+
+  .footer-feature,
+  .footer-col:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (min-width: 900px) {
   .footer-grid {
     grid-template-columns: 168px 1fr 1fr 1.15fr;
