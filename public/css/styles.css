@@ -2327,18 +2327,26 @@ section[aria-labelledby="principles"] .icon-tile {
 
 @media (min-width: 900px) {
   .footer-grid {
-    grid-template-columns: 220px 1fr 1fr 1.15fr;
+    grid-template-columns: 168px 1fr 1fr 1.15fr;
     gap: 3rem 2.5rem;
   }
+
+  .footer-feature img {
+    margin-top: -1.15rem;
+  }
+}
+
+.footer-feature {
+  align-self: start;
 }
 
 .footer-feature img {
   display: block;
-  width: 200px;
+  width: 156px;
   height: auto;
   padding: 0;
   object-fit: contain;
-  object-position: center;
+  object-position: top center;
   border-radius: 0;
   background: transparent;
 }
