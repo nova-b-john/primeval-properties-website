@@ -33,6 +33,58 @@
     });
   }
 
+  function closeMobileNav() {
+    if (!toggle || !nav) return;
+    if (toggle.getAttribute("aria-expanded") !== "true") return;
+    toggle.setAttribute("aria-expanded", "false");
+    nav.classList.remove("is-open");
+    document.body.classList.remove("is-nav-open");
+  }
+
+  function samePagePath(pathname) {
+    var current = window.location.pathname.replace(/\/$/, "") || "/";
+    var next = pathname.replace(/\/$/, "") || "/";
+    return current === next;
+  }
+
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest("a[href]");
+    if (!link || link.target === "_blank") return;
+
+    var href = link.getAttribute("href");
+    if (!href || href.charAt(0) === "#") {
+      if (!href || href === "#") return;
+    }
+
+    var url;
+    try {
+      url = new URL(href, window.location.href);
+    } catch (err) {
+      return;
+    }
+
+    if (url.origin !== window.location.origin || !samePagePath(url.pathname) || !url.hash) {
+      return;
+    }
+
+    var target = document.querySelector(url.hash);
+    if (!target) return;
+
+    event.preventDefault();
+    closeMobileNav();
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.setTimeout(function () {
+      target.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "start"
+      });
+      if (history.replaceState) {
+        history.replaceState(null, "", url.hash);
+      }
+    }, 10);
+  });
+
   if ("IntersectionObserver" in window) {
     var revealObserver = new IntersectionObserver(
       function (entries) {
