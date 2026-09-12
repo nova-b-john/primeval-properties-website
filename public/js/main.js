@@ -369,8 +369,88 @@
     measure();
   }
 
+  function initValuesScroll() {
+    var section = document.querySelector(".values-scroll");
+    if (!section) return;
+
+    var items = Array.prototype.slice.call(section.querySelectorAll(".value-row article"));
+    var progress = section.querySelector(".values-scroll__progress");
+    var dot = section.querySelector(".values-scroll__dot");
+    if (!items.length || !progress || !dot) return;
+
+    var reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var ticking = false;
+
+    function setActive(index) {
+      items.forEach(function (el, i) {
+        el.classList.toggle("is-active", i === index);
+      });
+    }
+
+    function alignSpine(p) {
+      var last = Math.max(items.length - 1, 1);
+      var scaled = p * last;
+      var i0 = Math.floor(scaled);
+      var i1 = Math.min(items.length - 1, i0 + 1);
+      var frac = scaled - i0;
+      var y0 = items[i0].offsetTop + items[i0].offsetHeight / 2;
+      var y1 = items[i1].offsetTop + items[i1].offsetHeight / 2;
+      var y = y0 + (y1 - y0) * frac;
+      progress.style.height = y + "px";
+      dot.style.top = y + "px";
+    }
+
+    function progressFromViewport() {
+      var first = items[0].getBoundingClientRect();
+      var lastItem = items[items.length - 1].getBoundingClientRect();
+      var firstMid = first.top + first.height / 2;
+      var lastMid = lastItem.top + lastItem.height / 2;
+      var span = firstMid - lastMid;
+      if (span === 0) return 0;
+      return (firstMid - window.innerHeight * 0.42) / span;
+    }
+
+    function update() {
+      if (reduceQuery.matches) return;
+
+      var p = progressFromViewport();
+      if (p < 0) p = 0;
+      if (p > 1) p = 1;
+
+      var last = Math.max(items.length - 1, 1);
+      var index = Math.round(p * last);
+      if (index < 0) index = 0;
+      if (index > last) index = last;
+
+      setActive(index);
+      alignSpine(p);
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        update();
+        ticking = false;
+      });
+    }
+
+    if (reduceQuery.matches) {
+      items.forEach(function (el) {
+        el.classList.add("is-active");
+      });
+      return;
+    }
+
+    section.classList.add("is-armed");
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
   initAboutFan();
   initWhoWeHelp();
+  initValuesScroll();
 
   var form = document.getElementById("property-enquiry");
   if (!form) return;
