@@ -1569,41 +1569,31 @@ section[aria-labelledby="principles"] .icon-tile {
   text-transform: uppercase;
 }
 
-.portfolio-flow__node {
-  padding: 1.1rem 0.75rem;
-  border: 1px solid var(--color-line);
-  background: var(--color-paper-raised);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.decision-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
 }
 
-.portfolio-flow__node--core {
-  background: var(--color-ink);
-  color: var(--color-paper);
-  border-color: var(--color-ink);
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  letter-spacing: 0.18em;
-  max-width: 16rem;
-  margin-inline: auto;
-}
-
-.portfolio-flow__arrow {
-  color: var(--color-accent);
-  letter-spacing: 0.2em;
+@media (min-width: 800px) {
+  .decision-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
 }
 
 .decision-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: var(--space-5);
-  min-height: 14rem;
-  padding: var(--space-5);
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.85rem;
+  height: 100%;
+  min-height: 16.5rem;
+  padding: 1.75rem 1.35rem 1.5rem;
   border: 1px solid var(--color-line);
   text-decoration: none;
+  text-align: center;
   background: var(--color-paper-raised);
   transition: border-color var(--ease), background-color var(--ease);
 }
@@ -1614,12 +1604,31 @@ section[aria-labelledby="principles"] .icon-tile {
   background: var(--color-paper);
 }
 
+.decision-card__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  margin-bottom: 0.35rem;
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-accent);
+}
+
+.decision-card__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .decision-card p {
+  margin: 0;
+  max-width: 22ch;
   color: var(--color-ink-soft);
   font-size: var(--text-sm);
 }
 
 .decision-card strong {
+  margin-top: auto;
+  padding-top: 0.75rem;
   font-family: var(--font-display);
   font-size: 1.45rem;
   font-weight: 500;
@@ -1627,7 +1636,7 @@ section[aria-labelledby="principles"] .icon-tile {
   color: var(--color-ink);
 }
 
-.decision-card span {
+.decision-card > span:last-child {
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-accent);
