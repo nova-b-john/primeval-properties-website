@@ -373,21 +373,13 @@
     var section = document.querySelector(".values-scroll");
     if (!section) return;
 
-    var pin = section.querySelector(".values-scroll__pin");
-    var row = section.querySelector(".value-row");
     var items = Array.prototype.slice.call(section.querySelectorAll(".value-row article"));
     var progress = section.querySelector(".values-scroll__progress");
     var dot = section.querySelector(".values-scroll__dot");
-    if (!pin || !row || !items.length || !progress || !dot) return;
+    if (!items.length || !progress || !dot) return;
 
-    var desktopQuery = window.matchMedia("(min-width: 800px)");
     var reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    var extra = 0;
     var ticking = false;
-
-    function canPin() {
-      return desktopQuery.matches && !reduceQuery.matches;
-    }
 
     function setActive(index) {
       items.forEach(function (el, i) {
@@ -408,73 +400,30 @@
       dot.style.top = y + "px";
     }
 
-    function reset() {
-      extra = 0;
-      section.style.height = "";
-      progress.style.height = "";
-      dot.style.top = "";
-      if (reduceQuery.matches) {
-        section.classList.remove("is-armed");
-        items.forEach(function (el) {
-          el.classList.add("is-active");
-        });
-        return;
-      }
-      section.classList.add("is-armed");
-    }
-
-    function progressFromPin() {
-      if (extra <= 0) return 0;
-      var y = -section.getBoundingClientRect().top;
-      if (y < 0) y = 0;
-      if (y > extra) y = extra;
-      return y / extra;
-    }
-
     function progressFromViewport() {
-      var anchor = window.innerHeight * 0.42;
-      var best = 0;
-      var bestDist = Infinity;
-      items.forEach(function (el, i) {
-        var rect = el.getBoundingClientRect();
-        var mid = rect.top + rect.height / 2;
-        var dist = Math.abs(mid - anchor);
-        if (dist < bestDist) {
-          bestDist = dist;
-          best = i;
-        }
-      });
-      var n = Math.max(items.length - 1, 1);
-      return best / n;
+      var first = items[0].getBoundingClientRect();
+      var lastItem = items[items.length - 1].getBoundingClientRect();
+      var firstMid = first.top + first.height / 2;
+      var lastMid = lastItem.top + lastItem.height / 2;
+      var span = firstMid - lastMid;
+      if (span === 0) return 0;
+      return (firstMid - window.innerHeight * 0.42) / span;
     }
 
     function update() {
       if (reduceQuery.matches) return;
 
-      var p = canPin() ? progressFromPin() : progressFromViewport();
+      var p = progressFromViewport();
       if (p < 0) p = 0;
       if (p > 1) p = 1;
 
       var last = Math.max(items.length - 1, 1);
-      var scaled = p * last;
-      var index = Math.round(scaled);
+      var index = Math.round(p * last);
       if (index < 0) index = 0;
       if (index > last) index = last;
 
       setActive(index);
       alignSpine(p);
-    }
-
-    function measure() {
-      reset();
-      if (!canPin()) {
-        update();
-        return;
-      }
-
-      extra = items.length * Math.round(window.innerHeight * 0.58);
-      section.style.height = pin.offsetHeight + extra + "px";
-      update();
     }
 
     function onScroll() {
@@ -486,10 +435,17 @@
       });
     }
 
+    if (reduceQuery.matches) {
+      items.forEach(function (el) {
+        el.classList.add("is-active");
+      });
+      return;
+    }
+
     section.classList.add("is-armed");
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", measure);
-    measure();
+    window.addEventListener("resize", update);
+    update();
   }
 
   initAboutFan();

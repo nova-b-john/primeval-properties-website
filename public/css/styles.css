@@ -968,7 +968,7 @@ body.is-nav-open .site-header {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Why Primeval — pinned values + traveling spine                              */
+/* Why Primeval — traveling spine follows the list as it scrolls               */
 /* -------------------------------------------------------------------------- */
 
 .values-scroll__stage {
@@ -1018,7 +1018,7 @@ body.is-nav-open .site-header {
 .values-scroll.is-armed .value-row article {
   position: relative;
   opacity: 0.28;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.35s ease;
 }
 
 .values-scroll.is-armed .value-row article.is-active {
@@ -1030,7 +1030,7 @@ body.is-nav-open .site-header {
   transform: scale(0.92);
   transform-origin: left center;
   opacity: 0.65;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
 .values-scroll.is-armed .is-active .value-row__num {
@@ -1039,8 +1039,8 @@ body.is-nav-open .site-header {
 }
 
 .values-scroll.is-armed .value-row p {
-  opacity: 0.55;
-  transition: opacity 0.4s ease;
+  opacity: 0.45;
+  transition: opacity 0.35s ease;
 }
 
 .values-scroll.is-armed .is-active p {
@@ -1048,17 +1048,6 @@ body.is-nav-open .site-header {
 }
 
 @media (min-width: 800px) {
-  .values-scroll.section {
-    padding-block: 0;
-  }
-
-  .values-scroll__pin {
-    position: sticky;
-    top: 0;
-    padding-block: 6rem 3.5rem;
-    background: #fff;
-  }
-
   .values-scroll__stage {
     grid-template-columns: 1.15rem 1fr;
     column-gap: 1.75rem;
@@ -1070,17 +1059,6 @@ body.is-nav-open .site-header {
 
   .values-scroll.is-armed .is-active p {
     opacity: 1;
-  }
-}
-
-@media (min-width: 800px) and (prefers-reduced-motion: reduce) {
-  .values-scroll.section {
-    padding-block: clamp(4.25rem, 9vw, 8.25rem);
-  }
-
-  .values-scroll__pin {
-    position: static;
-    padding-block: 0;
   }
 }
 
