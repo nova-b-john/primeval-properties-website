@@ -1809,8 +1809,9 @@ section[aria-labelledby="principles"] .icon-tile {
 }
 
 .overseas-band h2 {
-  max-width: 16ch;
+  max-width: 34ch;
   margin-inline: auto;
+  text-wrap: unset;
 }
 
 .overseas-band__list {
