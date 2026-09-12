@@ -5,13 +5,48 @@
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".site-nav");
 
+  var darkSurfaces = [
+    "hero",
+    "hero--page",
+    "section--dark",
+    "overseas-band",
+    "what-we-do__close",
+    "footer-cta",
+    "footer-panel"
+  ];
+
+  function isDarkSurface(el) {
+    while (el && el !== document.documentElement) {
+      if (el.classList) {
+        for (var i = 0; i < darkSurfaces.length; i++) {
+          if (el.classList.contains(darkSurfaces[i])) return true;
+        }
+      }
+      el = el.parentElement;
+    }
+    return false;
+  }
+
   function setHeaderState() {
     if (!header) return;
     header.classList.toggle("is-scrolled", window.scrollY > 8);
+
+    if (document.body.classList.contains("is-nav-open")) {
+      header.classList.add("is-on-light");
+      return;
+    }
+
+    var y = Math.min((header.offsetHeight || 60) + 1, window.innerHeight - 1);
+    var x = Math.round(window.innerWidth / 2);
+    header.style.pointerEvents = "none";
+    var under = document.elementFromPoint(x, y);
+    header.style.pointerEvents = "";
+    header.classList.toggle("is-on-light", !isDarkSurface(under));
   }
 
   setHeaderState();
   window.addEventListener("scroll", setHeaderState, { passive: true });
+  window.addEventListener("resize", setHeaderState);
 
   if (toggle && nav) {
     toggle.addEventListener("click", function () {
@@ -21,6 +56,7 @@
       document.body.classList.toggle("is-nav-open", !open);
       var label = toggle.querySelector(".sr-only");
       if (label) label.textContent = open ? "Open menu" : "Close menu";
+      setHeaderState();
     });
 
     document.addEventListener("keydown", function (event) {
@@ -29,31 +65,154 @@
         nav.classList.remove("is-open");
         document.body.classList.remove("is-nav-open");
         toggle.focus();
+        setHeaderState();
       }
     });
   }
 
-  if ("IntersectionObserver" in window) {
+  function closeMobileNav() {
+    if (!toggle || !nav) return;
+    if (toggle.getAttribute("aria-expanded") !== "true") return;
+    toggle.setAttribute("aria-expanded", "false");
+    nav.classList.remove("is-open");
+    document.body.classList.remove("is-nav-open");
+    setHeaderState();
+  }
+
+  function samePagePath(pathname) {
+    var current = window.location.pathname.replace(/\/$/, "") || "/";
+    var next = pathname.replace(/\/$/, "") || "/";
+    return current === next;
+  }
+
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest("a[href]");
+    if (!link || link.target === "_blank") return;
+
+    var href = link.getAttribute("href");
+    if (!href || href === "#") return;
+
+    var url;
+    try {
+      url = new URL(href, window.location.href);
+    } catch (err) {
+      return;
+    }
+
+    if (url.origin !== window.location.origin || !samePagePath(url.pathname) || !url.hash) {
+      return;
+    }
+
+    var target = document.querySelector(url.hash);
+    if (!target) return;
+
+    event.preventDefault();
+    closeMobileNav();
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.setTimeout(function () {
+      target.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "start"
+      });
+      if (history.replaceState) {
+        history.replaceState(null, "", url.hash);
+      }
+    }, 10);
+  });
+
+  (function initTextReveal() {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var skipClosest =
+      ".hero, .what-we-do__item, .value-row, .about-fan, .about-fan__word";
+
+    function shouldSkip(el) {
+      return !el || el.closest(skipClosest);
+    }
+
+    var auto = document.querySelectorAll(
+      [
+        "main .section-head",
+        "main .lead",
+        "main section h2",
+        "main section h3",
+        "main .philosophy article",
+        "main .icon-tile",
+        "main .decision-card",
+        "main .stepper > li",
+        "main .commercial-cover__list > li",
+        "main .overseas-band__list > li",
+        "main .property-types > li",
+        "main .personas > li",
+        "main .locations > li",
+        "main .card",
+        "main .accordion__item",
+        "main .who-we-help__chip",
+        "main .who-we-help__list > li",
+        "main .portfolio-flow__property",
+        "footer .footer-cta__content",
+        "footer .footer-feature",
+        "footer .footer-col",
+        "footer .footer-copy"
+      ].join(",")
+    );
+
+    auto.forEach(function (el) {
+      if (el.classList.contains("reveal") || el.closest(".reveal") || shouldSkip(el)) {
+        return;
+      }
+      el.classList.add("reveal");
+    });
+
+    var nodes = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+    var counts = [];
+
+    nodes.forEach(function (el) {
+      var parent = el.parentElement;
+      var found = null;
+      for (var c = 0; c < counts.length; c++) {
+        if (counts[c].parent === parent) {
+          found = counts[c];
+          break;
+        }
+      }
+      if (!found) {
+        found = { parent: parent, n: 0 };
+        counts.push(found);
+      }
+      el.style.setProperty("--reveal-delay", Math.min(found.n, 10) * 80 + "ms");
+      found.n += 1;
+    });
+
+    if (reduce) {
+      nodes.forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      nodes.forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+      return;
+    }
+
     var revealObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            revealObserver.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
         });
       },
       { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
 
-    document.querySelectorAll(".reveal").forEach(function (el) {
+    nodes.forEach(function (el) {
       revealObserver.observe(el);
     });
-  } else {
-    document.querySelectorAll(".reveal").forEach(function (el) {
-      el.classList.add("is-visible");
-    });
-  }
+  })();
 
   document.querySelectorAll(".accordion__trigger").forEach(function (button) {
     button.addEventListener("click", function () {

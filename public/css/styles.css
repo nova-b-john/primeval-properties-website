@@ -661,6 +661,29 @@ address {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.site-header.is-on-light .brand,
+.site-header.is-on-light .brand__name,
+.site-header.is-on-light .site-nav a:not(.button) {
+  color: #111;
+}
+
+.site-header.is-on-light.is-scrolled {
+  border-bottom-color: rgba(17, 17, 17, 0.08);
+}
+
+.site-header.is-on-light .nav-toggle {
+  border-color: rgba(17, 17, 17, 0.22);
+  background: rgba(17, 17, 17, 0.06);
+}
+
+.site-header.is-on-light .nav-toggle span:not(.sr-only) {
+  background: #111;
+}
+
+.site-header.is-on-light .nav-toggle:focus-visible {
+  outline-color: #111;
+}
+
 .header-inner {
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -696,6 +719,7 @@ address {
   letter-spacing: -0.02em;
   text-transform: none;
   color: #fff;
+  transition: color 0.2s ease;
 }
 
 .nav-toggle {
@@ -756,10 +780,10 @@ address {
 
 @media (max-width: 899px) {
   body.is-nav-open .site-header {
-    background: #000;
+    background: #fff;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
   }
 
   .header-inner {
@@ -767,15 +791,32 @@ address {
     width: min(100% - 40px, 82rem);
   }
 
+  body.is-nav-open .brand,
+  body.is-nav-open .nav-toggle {
+    position: relative;
+    z-index: 2;
+  }
+
   .site-nav.is-open {
     position: fixed;
     inset: 0;
-    z-index: 40;
+    z-index: 1;
     display: flex;
     min-height: 100vh;
     min-height: 100dvh;
     padding: calc(4.15rem + 1.25rem) 20px 2.5rem;
-    background: #000;
+    background: #fff;
+  }
+
+  .site-nav.is-open a:not(.button),
+  .site-nav.is-open a[aria-current="page"] {
+    color: #111;
+  }
+
+  .site-nav.is-open .header-cta--menu {
+    background: #111;
+    color: #fff;
+    border-color: #111;
   }
 
   .hero,
@@ -802,6 +843,7 @@ address {
   font-size: 1.5rem;
   color: #fff;
   letter-spacing: var(--tracking-tight);
+  transition: color 0.2s ease;
 }
 
 .site-nav a[aria-current="page"] {
@@ -860,6 +902,11 @@ address {
   .site-nav a[aria-current="page"] {
     color: #fff;
     opacity: 1;
+  }
+
+  .site-header.is-on-light .site-nav a:not(.button):hover,
+  .site-header.is-on-light .site-nav a[aria-current="page"] {
+    color: #111;
   }
 
   .header-cta--menu {
@@ -2464,13 +2511,49 @@ section[aria-labelledby="principles"] .icon-tile {
 
 .reveal {
   opacity: 0;
-  transform: translateY(1.1rem);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(1.2rem);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+.hero__chip,
+.hero h1,
+.hero__lead,
+.hero .button {
+  animation: text-emerge 0.85s ease both;
+}
+
+.hero__chip {
+  animation-delay: 0.08s;
+}
+
+.hero h1 {
+  animation-delay: 0.16s;
+}
+
+.hero__lead {
+  animation-delay: 0.28s;
+}
+
+.hero .button {
+  animation-delay: 0.4s;
+}
+
+@keyframes text-emerge {
+  from {
+    opacity: 0;
+    transform: translateY(1.15rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -2760,5 +2843,12 @@ body.is-nav-open {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .hero__chip,
+  .hero h1,
+  .hero__lead,
+  .hero .button {
+    animation: none;
   }
 }
