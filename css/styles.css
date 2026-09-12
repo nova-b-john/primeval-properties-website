@@ -661,6 +661,29 @@ address {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.site-header.is-on-light .brand,
+.site-header.is-on-light .brand__name,
+.site-header.is-on-light .site-nav a:not(.button) {
+  color: #111;
+}
+
+.site-header.is-on-light.is-scrolled {
+  border-bottom-color: rgba(17, 17, 17, 0.08);
+}
+
+.site-header.is-on-light .nav-toggle {
+  border-color: rgba(17, 17, 17, 0.22);
+  background: rgba(17, 17, 17, 0.06);
+}
+
+.site-header.is-on-light .nav-toggle span:not(.sr-only) {
+  background: #111;
+}
+
+.site-header.is-on-light .nav-toggle:focus-visible {
+  outline-color: #111;
+}
+
 .header-inner {
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -696,6 +719,7 @@ address {
   letter-spacing: -0.02em;
   text-transform: none;
   color: #fff;
+  transition: color 0.2s ease;
 }
 
 .nav-toggle {
@@ -802,6 +826,7 @@ address {
   font-size: 1.5rem;
   color: #fff;
   letter-spacing: var(--tracking-tight);
+  transition: color 0.2s ease;
 }
 
 .site-nav a[aria-current="page"] {
@@ -860,6 +885,11 @@ address {
   .site-nav a[aria-current="page"] {
     color: #fff;
     opacity: 1;
+  }
+
+  .site-header.is-on-light .site-nav a:not(.button):hover,
+  .site-header.is-on-light .site-nav a[aria-current="page"] {
+    color: #111;
   }
 
   .header-cta--menu {

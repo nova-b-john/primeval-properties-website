@@ -5,13 +5,48 @@
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".site-nav");
 
+  var darkSurfaces = [
+    "hero",
+    "hero--page",
+    "section--dark",
+    "overseas-band",
+    "what-we-do__close",
+    "footer-cta",
+    "footer-panel"
+  ];
+
+  function isDarkSurface(el) {
+    while (el && el !== document.documentElement) {
+      if (el.classList) {
+        for (var i = 0; i < darkSurfaces.length; i++) {
+          if (el.classList.contains(darkSurfaces[i])) return true;
+        }
+      }
+      el = el.parentElement;
+    }
+    return false;
+  }
+
   function setHeaderState() {
     if (!header) return;
     header.classList.toggle("is-scrolled", window.scrollY > 8);
+
+    if (document.body.classList.contains("is-nav-open")) {
+      header.classList.remove("is-on-light");
+      return;
+    }
+
+    var y = Math.min((header.offsetHeight || 60) + 1, window.innerHeight - 1);
+    var x = Math.round(window.innerWidth / 2);
+    header.style.pointerEvents = "none";
+    var under = document.elementFromPoint(x, y);
+    header.style.pointerEvents = "";
+    header.classList.toggle("is-on-light", !isDarkSurface(under));
   }
 
   setHeaderState();
   window.addEventListener("scroll", setHeaderState, { passive: true });
+  window.addEventListener("resize", setHeaderState);
 
   if (toggle && nav) {
     toggle.addEventListener("click", function () {
@@ -21,6 +56,7 @@
       document.body.classList.toggle("is-nav-open", !open);
       var label = toggle.querySelector(".sr-only");
       if (label) label.textContent = open ? "Open menu" : "Close menu";
+      setHeaderState();
     });
 
     document.addEventListener("keydown", function (event) {
@@ -29,6 +65,7 @@
         nav.classList.remove("is-open");
         document.body.classList.remove("is-nav-open");
         toggle.focus();
+        setHeaderState();
       }
     });
   }
@@ -39,6 +76,7 @@
     toggle.setAttribute("aria-expanded", "false");
     nav.classList.remove("is-open");
     document.body.classList.remove("is-nav-open");
+    setHeaderState();
   }
 
   function samePagePath(pathname) {
@@ -52,9 +90,7 @@
     if (!link || link.target === "_blank") return;
 
     var href = link.getAttribute("href");
-    if (!href || href.charAt(0) === "#") {
-      if (!href || href === "#") return;
-    }
+    if (!href || href === "#") return;
 
     var url;
     try {
