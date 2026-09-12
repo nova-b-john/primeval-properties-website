@@ -2375,6 +2375,7 @@ body.is-nav-open .site-header {
 .philosophy article {
   padding-top: var(--space-4);
   border-top: 1px solid var(--color-line);
+  text-align: center;
 }
 
 .section--dark .philosophy article {
