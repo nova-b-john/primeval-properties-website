@@ -1975,6 +1975,16 @@ section[aria-labelledby="principles"] .icon-tile {
   }
 }
 
+@media (max-width: 899px) {
+  #commercial-heading {
+    font-size: 1.85rem;
+  }
+
+  #commercial-heading .commercial-heading__lead {
+    white-space: nowrap;
+  }
+}
+
 .commercial-cover__list {
   list-style: none;
   display: grid;
@@ -2688,6 +2698,14 @@ section[aria-labelledby="principles"] .icon-tile {
   .philosophy article {
     width: 100%;
     text-align: center;
+  }
+
+  .philosophy h3 {
+    font-size: 1.2rem;
+  }
+
+  .philosophy span {
+    font-size: 0.95rem;
   }
 }
 
