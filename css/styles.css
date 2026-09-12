@@ -2667,6 +2667,24 @@ section[aria-labelledby="principles"] .icon-tile {
   grid-template-columns: 1fr 1fr;
 }
 
+@media (max-width: 799px) {
+  section[aria-labelledby="philosophy"] .section-head,
+  section[aria-labelledby="philosophy"] .lead {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .philosophy {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .philosophy article {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 @media (min-width: 800px) {
   .philosophy {
     grid-template-columns: repeat(4, 1fr);
