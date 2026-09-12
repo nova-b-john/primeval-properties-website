@@ -731,7 +731,7 @@ body.is-nav-open .site-header {
 }
 
 .nav-toggle[aria-expanded="true"] span:nth-child(4) {
-  transform: translateY(-6px) rotate(-45deg);
+  transform: translateY(-5px) rotate(-45deg);
 }
 
 .nav-toggle:focus-visible {
@@ -753,6 +753,16 @@ body.is-nav-open .site-header {
   top: 4.75rem;
   padding: var(--space-5) 1.25rem var(--space-6);
   background: rgba(0, 0, 0, 0.92);
+}
+
+@media (max-width: 899px) {
+  .header-inner {
+    min-height: 4.15rem;
+  }
+
+  .site-nav.is-open {
+    top: 4.15rem;
+  }
 }
 
 .site-nav ul {

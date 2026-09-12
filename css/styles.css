@@ -755,6 +755,16 @@ body.is-nav-open .site-header {
   background: rgba(0, 0, 0, 0.92);
 }
 
+@media (max-width: 899px) {
+  .header-inner {
+    min-height: 4.15rem;
+  }
+
+  .site-nav.is-open {
+    top: 4.15rem;
+  }
+}
+
 .site-nav ul {
   list-style: none;
   display: flex;
