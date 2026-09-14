@@ -2424,21 +2424,13 @@ section[aria-labelledby="principles"] .icon-tile {
 
 .footer-feature img {
   display: block;
-  width: 156px;
+  width: 128px;
   height: auto;
   padding: 0;
   object-fit: contain;
   object-position: top center;
   border-radius: 0;
   background: transparent;
-}
-
-.footer-feature p {
-  margin-top: 1.1rem;
-  max-width: 12.5rem;
-  color: #8d8d8d;
-  font-size: 0.92rem;
-  line-height: 1.45;
 }
 
 .footer-col h2 {
@@ -2479,6 +2471,8 @@ section[aria-labelledby="principles"] .icon-tile {
   align-items: flex-start;
   gap: 0.7rem;
   color: #8d8d8d;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 .footer-copy {
