@@ -2433,14 +2433,6 @@ section[aria-labelledby="principles"] .icon-tile {
   background: transparent;
 }
 
-.footer-feature p {
-  margin-top: 1.1rem;
-  max-width: 12.5rem;
-  color: #8d8d8d;
-  font-size: 0.92rem;
-  line-height: 1.45;
-}
-
 .footer-col h2 {
   margin: 0 0 1.25rem;
   font-family: var(--font-sans);
@@ -2479,6 +2471,8 @@ section[aria-labelledby="principles"] .icon-tile {
   align-items: flex-start;
   gap: 0.7rem;
   color: #8d8d8d;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 .footer-copy {
